@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :check_user, only: [:show, :edit, :update]
+  before_action :check_user, only: [:edit, :update]
 
   
   def show # 追加
