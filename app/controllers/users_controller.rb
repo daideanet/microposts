@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_edit, only: [:edit, :update]
+  before_action :set_user, only: [:show, :edit, :update]
+  before_action :check_user, only: [:show, :edit, :update]
+
   
   def show # 追加
-   @user = User.find(params[:id])
   end
 
   def new
@@ -38,12 +39,15 @@ class UsersController < ApplicationController
                                  :password_confirmation, :area, :profile)
   end
   
-  def set_edit
-	if @user == current_user 
-	  @user = User.find(params[:id])
-  else
-      redirect_to root_path
+  def set_user 
+    @user = User.find(params[:id])
+  end
+  
+  def check_user
+    if @user != current_user
+    redirect to root_path 
     end
   end
 
+  
 end

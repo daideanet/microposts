@@ -1,5 +1,27 @@
-<h1>
-  <%= gravatar_for @user %>
-  <%= @user.name %>
-  <%= link_to "edit" , edit_user_path(@user) %>
-</h1>
+  <p><%= gravatar_for @user %></p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">User</th>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <th scope="row">Area</th>
+      <td><%= @user.area %></td>
+    </tr>
+    <tr>
+      <th scope="row">Profile</th>
+      <td><%= @user.profile %></td>
+    </tr>
+  </tbody>
+</table>
+
+<button type="button" class="btn btn-info"><%= link_to "編集" , edit_user_path(@user) %></button>
+  
