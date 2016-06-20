@@ -6,6 +6,28 @@
         <%= @user.name %>
       </h1>
     </section>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">User</th>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th scope="row">Area</th>
+          <td><%= @user.area %></td>
+        </tr>
+        <tr>
+          <th scope="row">Profile</th>
+          <td><%= @user.profile %></td>
+        </tr>
+      </tbody>
+    </table>
   </aside>
   <div class="col-md-8">
     <% if @user.microposts.any? %>
@@ -16,3 +38,6 @@
     <% end %>
   </div>
 </div>
+
+
+
