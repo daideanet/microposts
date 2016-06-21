@@ -6,30 +6,9 @@
         <%= @user.name %>
       </h1>
     </section>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>項目</th>
-          <th>内容</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">User</th>
-          <td><%= @user.name %></td>
-        </tr>
-        <tr>
-          <th scope="row">Area</th>
-          <td><%= @user.area %></td>
-        </tr>
-        <tr>
-          <th scope="row">Profile</th>
-          <td><%= @user.profile %></td>
-        </tr>
-      </tbody>
-    </table>
   </aside>
   <div class="col-md-8">
+    <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
       <h3>Microposts (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">
@@ -38,6 +17,3 @@
     <% end %>
   </div>
 </div>
-
-
-
