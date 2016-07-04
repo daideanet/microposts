@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :users
   resources :microposts
   resources :relationships, only: [:create, :destroy]
+  resources :likes, only: [:create, :destroy]
 
   resources :users do
     member do
@@ -18,4 +19,7 @@ Rails.application.routes.draw do
     end
   end
   
+  # post '/like/:id', to: 'likes#like', as: 'like'
+  # delete  '/unlike/:id', to: 'likes#unlike', as: 'unlike'
+
 end

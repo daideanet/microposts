@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
                                     dependent:   :destroy
   has_many :follower_users, through: :follower_relationships, source: :follower
   
+  has_many :likes, dependent: :destroy
+
+  has_many :like_microposts, through: :likes, source: :micropost
+ 
     # 他のユーザーをフォローする
   def follow(other_user)
     following_relationships.find_or_create_by(followed_id: other_user.id)
@@ -36,8 +40,31 @@ class User < ActiveRecord::Base
     following_users.include?(other_user)
   end
   
-    def feed_items
-    Micropost.where(user_id: following_user_ids + [self.id])
+  def feed_items
+    Micropost.where(user_id: self.following_user_ids + [self.id])
   end
   
+  # 他のユーザーの投稿をお気に入りする
+  def like(other_micropost)
+    likes.find_or_create_by(micropost_id: other_micropost.id)
+  end
+  
+  # 他のユーザーの投稿をお気に入りを解除する
+def unlike(micropost)
+  like =  likes.find_by(micropost_id: micropost.id)
+  like.destroy if like
 end
+
+  # あるユーザーの投稿をお気に入りしているかどうか？
+  def like?(micropost)
+    like_microposts.include?(micropost)
+  end
+end
+
+# ・likesの場合は、複合インディックスはいらないのか？ 
+# ・following_relationshipsにあたる、user_like　のモデルはいらない？ 
+# ・ def destroy 
+# 　　　@user = current_user.following_relationships.find(params[:id]).followed
+# 　　　current_user.unfollow(@user)
+# 　end 
+# 　この.followedの意味は？
