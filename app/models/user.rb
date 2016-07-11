@@ -59,6 +59,10 @@ end
   def like?(micropost)
     like_microposts.include?(micropost)
   end
+  
+  def unlike?(micropost)
+    !like_microposts.include?(micropost)
+  end
 end
 
 # ・likesの場合は、複合インディックスはいらないのか？ 

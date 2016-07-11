@@ -1,9 +1,8 @@
 <% @user ||= current_user %>
 <div class="stats">
 
-  
 <%= link_to 'フォロワーリスト', followers_user_path(@user) %>
 <%= link_to 'フォローリスト', following_user_path(@user) %>
-<td><%= link_to 'お気に入り', user_path(@user) %></td>
+<td><%= link_to 'お気に入り', like_microposts_user_path(@user) %></td>
 
 </div>

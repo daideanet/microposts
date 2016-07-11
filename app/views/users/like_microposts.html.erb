@@ -1,0 +1,9 @@
+<% @like_microposts.each do |micropost| %>
+
+<ul>
+  <li>  <%= micropost.content %> </li>
+  <li>  <%= micropost.user.name %> </li>
+  <li>  <%= micropost.created_at %> </li>
+</ul>
+
+<% end %>
